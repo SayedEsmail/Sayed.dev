@@ -7,7 +7,7 @@ export default function ContactLinks({ className = "", iconClassName = "" }: Con
     const links = [
         {
             name: "GitHub",
-            url: "https://github.com/sayed-esmail",
+            url: "https://github.com/SayedEsmail",
             aria: "GitHub Profile",
             icon: (
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -17,7 +17,7 @@ export default function ContactLinks({ className = "", iconClassName = "" }: Con
         },
         {
             name: "LinkedIn",
-            url: "https://linkedin.com/in/sayedesmail",
+            url: "https://linkedin.com/in/SayedEsmail",
             aria: "LinkedIn Profile",
             icon: (
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
