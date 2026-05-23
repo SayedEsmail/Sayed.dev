@@ -246,6 +246,22 @@ Key architectural decisions:
                 src: "/projects/zads/landing-page.png",
                 alt: "Zads Landing Page — Clean, conversion-focused design with feature highlights and how-it-works flow",
             },
+            {
+                src: "/projects/zads/teacher-dashboard.png",
+                alt: "Teacher Dashboard — Profile metrics (Views, Contact Requests, Ratings, Active Subjects) and incoming parent connection requests",
+            },
+            {
+                src: "/projects/zads/parent-dashboard.png",
+                alt: "Parent Dashboard — Overview showing followed teachers, requests count, search panel, and quick request recommendations in Arabic RTL",
+            },
+            {
+                src: "/projects/zads/parent-requests.png",
+                alt: "Parent Request Logs — Live tracking page showing active, closed, and deleted teacher tutoring requests across subjects",
+            },
+            {
+                src: "/projects/zads/dependents-list.png",
+                alt: "Dependents (Children) Management — Area for parents to manage multiple student sub-profiles and associate distinct subjects/learning stages",
+            },
         ],
         role: "Full-Stack Developer",
         featured: true,
