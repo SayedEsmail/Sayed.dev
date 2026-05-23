@@ -25,6 +25,8 @@ export default function Navbar() {
     const navItems = [
         { name: "Home", path: "/" },
         { name: "Projects", path: "/projects" },
+        { name: "About", path: "/about" },
+        { name: "Articles", path: "/articles" },
     ];
 
     const isPathActive = (path: string) => {

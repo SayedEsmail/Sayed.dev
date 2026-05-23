@@ -81,7 +81,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     </h1>
                 </FadeIn>
                 <FadeIn delay={400}>
-                    <p className="text-base sm:text-lg font-mono text-neutral-400 leading-relaxed mb-8">
+                    <p className="text-base sm:text-lg md:text-xl font-mono text-neutral-300 leading-relaxed mb-8">
                         {project.subtitle}
                     </p>
                 </FadeIn>
@@ -138,15 +138,15 @@ export default async function ProjectPage({ params }: PageProps) {
             {/* Case Study Body */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
                 {/* Main Content Column */}
-                <div className="lg:col-span-2 flex flex-col gap-12">
+                <div className="lg:col-span-2 flex flex-col gap-14">
                     {/* The Problem */}
                     <FadeIn>
                         <section aria-labelledby="problem-heading">
                             <h2 id="problem-heading" className="text-xl font-bold tracking-tight text-white mb-4 flex items-center gap-2">
-                                <span className="w-1 h-4 bg-accent rounded-full inline-block"></span>
+                                <span className="w-1.5 h-5 bg-accent rounded-full inline-block"></span>
                                 The Problem Statement
                             </h2>
-                            <div className="text-sm leading-relaxed text-neutral-400 font-mono space-y-4">
+                            <div className="text-[15px] sm:text-base leading-relaxed text-neutral-300 font-mono space-y-5">
                                 {project.problem.split('\n\n').map((para, i) => (
                                     <p key={i}>{para}</p>
                                 ))}
@@ -158,10 +158,10 @@ export default async function ProjectPage({ params }: PageProps) {
                     <FadeIn>
                         <section aria-labelledby="architecture-heading">
                             <h2 id="architecture-heading" className="text-xl font-bold tracking-tight text-white mb-4 flex items-center gap-2">
-                                <span className="w-1 h-4 bg-accent rounded-full inline-block"></span>
-                                System Architecture
+                                <span className="w-1.5 h-5 bg-accent rounded-full inline-block"></span>
+                                System Architecture &amp; Strategy
                             </h2>
-                            <div className="text-sm leading-relaxed text-neutral-400 font-mono space-y-6">
+                            <div className="text-[15px] sm:text-base leading-relaxed text-neutral-300 font-mono space-y-6">
                                 {project.architecture.split('\n\n').map((para, i) => (
                                     <p key={i} className="whitespace-pre-line">{para}</p>
                                 ))}
@@ -169,9 +169,29 @@ export default async function ProjectPage({ params }: PageProps) {
                                 {/* ASCII Architecture Diagram */}
                                 {project.architectureDiagram && (
                                     <div className="mt-8 p-6 bg-neutral-950/80 rounded-xl border border-neutral-900 overflow-x-auto select-none">
-                                        <pre className="font-mono text-xs leading-5 text-accent/80 antialiased font-medium">{project.architectureDiagram}</pre>
+                                        <pre className="font-mono text-[11px] sm:text-xs leading-5 text-accent/80 antialiased font-medium">{project.architectureDiagram}</pre>
                                     </div>
                                 )}
+                            </div>
+                        </section>
+                    </FadeIn>
+
+                    {/* Business & Product Outcomes */}
+                    <FadeIn>
+                        <section aria-labelledby="business-impact-heading">
+                            <h2 id="business-impact-heading" className="text-xl font-bold tracking-tight text-white mb-4 flex items-center gap-2">
+                                <span className="w-1.5 h-5 bg-accent rounded-full inline-block"></span>
+                                Business &amp; Product Outcomes
+                            </h2>
+                            <div className="p-6 rounded-xl border border-neutral-900 bg-accent/5 flex flex-col gap-4">
+                                <p className="text-[13px] sm:text-sm font-mono text-neutral-400">
+                                    Startups and corporate units hire engineers to drive business value. Here is the direct positive product impact achieved through these specific technical implementations:
+                                </p>
+                                <ul className="flex flex-col gap-3 list-disc marker:text-accent font-mono text-neutral-200 text-sm sm:text-base leading-relaxed pl-5">
+                                    {project.businessImpact.map((item, i) => (
+                                        <li key={i}>{item}</li>
+                                    ))}
+                                </ul>
                             </div>
                         </section>
                     </FadeIn>
@@ -180,26 +200,26 @@ export default async function ProjectPage({ params }: PageProps) {
                     <FadeIn>
                         <section aria-labelledby="challenges-heading">
                             <h2 id="challenges-heading" className="text-xl font-bold tracking-tight text-white mb-6 flex items-center gap-2">
-                                <span className="w-1 h-4 bg-accent rounded-full inline-block"></span>
-                                Engineering Challenges & Solutions
+                                <span className="w-1.5 h-5 bg-accent rounded-full inline-block"></span>
+                                Engineering Challenges &amp; Solutions
                             </h2>
                             <div className="flex flex-col gap-6">
                                 {project.challenges.map((c, i) => (
                                     <div
                                         key={i}
-                                        className="p-6 rounded-xl border border-neutral-900 bg-neutral-950/30 flex flex-col gap-3 relative"
+                                        className="p-6 rounded-xl border border-neutral-900 bg-neutral-950/30 flex flex-col gap-4 relative"
                                     >
                                         <div className="flex items-start gap-3">
                                             <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 font-mono text-[10px] font-bold mt-0.5">
                                                 !
                                             </span>
-                                            <h3 className="text-sm font-bold text-white font-mono tracking-tight leading-relaxed">
+                                            <h3 className="text-[15px] sm:text-base font-bold text-white font-mono tracking-tight leading-relaxed">
                                                 {c.title}
                                             </h3>
                                         </div>
-                                        <div className="pl-8 flex gap-3 text-xs leading-relaxed text-neutral-400 font-mono border-l border-neutral-900 ml-2.5">
+                                        <div className="pl-8 flex gap-3 text-[13px] sm:text-sm leading-relaxed text-neutral-300 font-mono border-l border-neutral-900 ml-2.5">
                                             <div>
-                                                <span className="text-accent font-semibold block mb-1">Engineered Solution:</span>
+                                                <span className="text-accent font-semibold block mb-1.5">Engineered Solution:</span>
                                                 {c.solution}
                                             </div>
                                         </div>
@@ -215,7 +235,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     {/* Tech Stack Visual Breakdown */}
                     <FadeIn>
                         <section aria-labelledby="stack-heading" className="p-6 rounded-xl border border-neutral-900 bg-neutral-950/20">
-                            <h2 id="stack-heading" className="text-sm font-bold tracking-tight text-white uppercase mb-4 flex items-center gap-2 font-mono">
+                            <h2 id="stack-heading" className="text-xs font-bold tracking-tight text-white uppercase mb-4 flex items-center gap-2 font-mono">
                                 Tech Stack Roles
                             </h2>
                             <ul className="flex flex-col gap-4 font-mono">
@@ -237,8 +257,8 @@ export default async function ProjectPage({ params }: PageProps) {
                     {/* Impact & Performance Metrics */}
                     <FadeIn>
                         <section aria-labelledby="impact-heading" className="p-6 rounded-xl border border-neutral-900 bg-neutral-950/20">
-                            <h2 id="impact-heading" className="text-sm font-bold tracking-tight text-white uppercase mb-4 flex items-center gap-2 font-mono">
-                                Impact & Metrics
+                            <h2 id="impact-heading" className="text-xs font-bold tracking-tight text-white uppercase mb-4 flex items-center gap-2 font-mono">
+                                Technical Benchmarks
                             </h2>
                             <div className="flex flex-col gap-4">
                                 {project.impact.map((metric, i) => (
@@ -264,12 +284,12 @@ export default async function ProjectPage({ params }: PageProps) {
             {project.screenshots.length > 0 && (
                 <section aria-labelledby="gallery-heading" className="border-t border-neutral-900 pt-16 mt-8">
                     <FadeIn>
-                        <h2 id="gallery-heading" className="text-xl font-bold tracking-tight text-white mb-6 flex items-center gap-2">
-                            <span className="w-1 h-4 bg-accent rounded-full inline-block"></span>
+                        <h2 id="gallery-heading" className="text-xl font-bold tracking-tight text-white mb-6 flex items-center gap-2 font-mono">
+                            <span className="w-1.5 h-5 bg-accent rounded-full inline-block"></span>
                             Production UI Walkthrough
                         </h2>
                     </FadeIn>
-                    <div className="grid md:grid-cols-2 gap-8 mt-8">
+                    <div className="grid md:grid-cols-2 gap-8 mt-6">
                         {project.screenshots.map((screen, i) => (
                             <FadeIn key={i} delay={100 * (i + 1)} className="flex flex-col gap-3">
                                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-neutral-900 bg-neutral-950/20">
@@ -281,7 +301,7 @@ export default async function ProjectPage({ params }: PageProps) {
                                         className="object-cover object-top hover:scale-102 transition-transform duration-500"
                                     />
                                 </div>
-                                <p className="text-[11px] font-mono leading-relaxed text-neutral-400 pl-2 border-l-2 border-accent">
+                                <p className="text-xs font-mono leading-relaxed text-neutral-400 pl-2.5 border-l-2 border-accent">
                                     {screen.alt}
                                 </p>
                             </FadeIn>
@@ -289,6 +309,36 @@ export default async function ProjectPage({ params }: PageProps) {
                     </div>
                 </section>
             )}
+
+            {/* CTA Connect Section */}
+            <FadeIn>
+                <section aria-label="Call to Action" className="mt-12 p-8 md:p-10 rounded-2xl border border-neutral-900 bg-neutral-950/30 flex flex-col md:flex-row items-center justify-between gap-6 hover:border-accent/25 transition-colors duration-300">
+                    <div>
+                        <h3 className="text-lg md:text-xl font-bold text-white font-mono mb-2">
+                            Interested in similar architecture challenges?
+                        </h3>
+                        <p className="text-neutral-400 text-xs sm:text-sm font-mono max-w-xl">
+                            If your team is scaling systems and seeks senior engineer positioning with robust product-centric workflows, let&apos;s talk.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto shrink-0">
+                        <a
+                            href="mailto:sayed.5atab@gmail.com"
+                            className="inline-flex items-center justify-center font-mono text-xs font-medium text-[#0a0a0a] bg-accent hover:bg-accent-hover px-5 py-3 rounded-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 select-none text-center"
+                        >
+                            Email Sayed
+                        </a>
+                        <a
+                            href="https://linkedin.com/in/SayedEsmail"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center font-mono text-xs font-medium text-neutral-300 hover:text-white border border-neutral-800 hover:border-neutral-700 bg-neutral-950/20 px-5 py-3 rounded-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center"
+                        >
+                            View LinkedIn
+                        </a>
+                    </div>
+                </section>
+            </FadeIn>
         </div>
     );
 }
