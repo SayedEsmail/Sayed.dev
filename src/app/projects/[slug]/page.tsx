@@ -138,7 +138,7 @@ export default async function ProjectPage({ params }: PageProps) {
             {/* Case Study Body */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
                 {/* Main Content Column */}
-                <div className="lg:col-span-2 flex flex-col gap-14">
+                <div className="lg:col-span-2 flex flex-col gap-16">
                     {/* The Problem */}
                     <FadeIn>
                         <section aria-labelledby="problem-heading">
@@ -146,7 +146,7 @@ export default async function ProjectPage({ params }: PageProps) {
                                 <span className="w-1.5 h-5 bg-accent rounded-full inline-block"></span>
                                 The Problem Statement
                             </h2>
-                            <div className="text-[15px] sm:text-base leading-relaxed text-neutral-300 font-mono space-y-5">
+                            <div className="text-base sm:text-[17px] md:text-[18px] leading-loose text-neutral-200 font-mono space-y-6">
                                 {project.problem.split('\n\n').map((para, i) => (
                                     <p key={i}>{para}</p>
                                 ))}
@@ -161,7 +161,7 @@ export default async function ProjectPage({ params }: PageProps) {
                                 <span className="w-1.5 h-5 bg-accent rounded-full inline-block"></span>
                                 System Architecture &amp; Strategy
                             </h2>
-                            <div className="text-[15px] sm:text-base leading-relaxed text-neutral-300 font-mono space-y-6">
+                            <div className="text-base sm:text-[17px] md:text-[18px] leading-loose text-neutral-200 font-mono space-y-6">
                                 {project.architecture.split('\n\n').map((para, i) => (
                                     <p key={i} className="whitespace-pre-line">{para}</p>
                                 ))}
@@ -172,6 +172,32 @@ export default async function ProjectPage({ params }: PageProps) {
                                         <pre className="font-mono text-[11px] sm:text-xs leading-5 text-accent/80 antialiased font-medium">{project.architectureDiagram}</pre>
                                     </div>
                                 )}
+                            </div>
+                        </section>
+                    </FadeIn>
+
+                    {/* Key Technical Decisions */}
+                    <FadeIn>
+                        <section aria-labelledby="decisions-heading">
+                            <h2 id="decisions-heading" className="text-xl font-bold tracking-tight text-white mb-6 flex items-center gap-2 font-mono">
+                                <span className="w-1.5 h-5 bg-accent rounded-full inline-block"></span>
+                                Key Technical Decisions
+                            </h2>
+                            <div className="grid sm:grid-cols-2 gap-6">
+                                {project.keyDecisions.map((dec, i) => (
+                                    <div
+                                        key={i}
+                                        className="p-5 rounded-xl border border-neutral-900 bg-neutral-950/30 flex flex-col gap-3 hover:border-accent/15 transition-colors duration-300"
+                                    >
+                                        <h3 className="text-sm sm:text-base font-bold text-white font-mono tracking-tight flex items-center gap-2">
+                                            <span className="w-1.5 h-1.5 bg-accent rounded-full"></span>
+                                            {dec.decision}
+                                        </h3>
+                                        <p className="text-neutral-400 text-xs sm:text-sm font-mono leading-relaxed pl-3">
+                                            {dec.justification}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
                         </section>
                     </FadeIn>
@@ -187,7 +213,7 @@ export default async function ProjectPage({ params }: PageProps) {
                                 <p className="text-[13px] sm:text-sm font-mono text-neutral-400">
                                     Startups and corporate units hire engineers to drive business value. Here is the direct positive product impact achieved through these specific technical implementations:
                                 </p>
-                                <ul className="flex flex-col gap-3 list-disc marker:text-accent font-mono text-neutral-200 text-sm sm:text-base leading-relaxed pl-5">
+                                <ul className="flex flex-col gap-3 list-disc marker:text-accent font-mono text-neutral-200 text-[15px] sm:text-base leading-relaxed pl-5">
                                     {project.businessImpact.map((item, i) => (
                                         <li key={i}>{item}</li>
                                     ))}
@@ -213,11 +239,11 @@ export default async function ProjectPage({ params }: PageProps) {
                                             <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 font-mono text-[10px] font-bold mt-0.5">
                                                 !
                                             </span>
-                                            <h3 className="text-[15px] sm:text-base font-bold text-white font-mono tracking-tight leading-relaxed">
+                                            <h3 className="text-base sm:text-lg font-bold text-white font-mono tracking-tight leading-relaxed">
                                                 {c.title}
                                             </h3>
                                         </div>
-                                        <div className="pl-8 flex gap-3 text-[13px] sm:text-sm leading-relaxed text-neutral-300 font-mono border-l border-neutral-900 ml-2.5">
+                                        <div className="pl-8 flex gap-3 text-sm sm:text-[15px] leading-relaxed text-neutral-300 font-mono border-l border-neutral-900 ml-2.5">
                                             <div>
                                                 <span className="text-accent font-semibold block mb-1.5">Engineered Solution:</span>
                                                 {c.solution}
@@ -286,7 +312,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     <FadeIn>
                         <h2 id="gallery-heading" className="text-xl font-bold tracking-tight text-white mb-6 flex items-center gap-2 font-mono">
                             <span className="w-1.5 h-5 bg-accent rounded-full inline-block"></span>
-                            Production UI Walkthrough
+                            Production Interface Walkthrough
                         </h2>
                     </FadeIn>
                     <div className="grid md:grid-cols-2 gap-8 mt-6">

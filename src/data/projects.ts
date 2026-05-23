@@ -28,6 +28,7 @@ export interface Project {
     challenges: Challenge[];
     impact: Impact[];
     businessImpact: string[];
+    keyDecisions: { decision: string; justification: string }[];
     role: string;
     featured: boolean;
     order: number;
@@ -83,6 +84,29 @@ Key architectural decisions:
 • Cookie-based authentication with role-based access control
 • Full internationalization (English/Arabic) with dynamic RTL/LTR switching`,
 
+        architectureDiagram: `┌────────────────────────────────────────────────────────┐
+│                   3-App Vue 3 Client                   │
+│   ┌───────────────┐ ┌───────────────┐ ┌────────────┐   │
+│   │  Super Admin  │ │ Cust Dashboard│ │ Subdomains │   │
+│   └───────┬───────┘ └───────┬───────┘ └──────┬─────┘   │
+└───────────┼─────────────────┼────────────────┼─────────┘
+            ▼                 ▼                ▼
+     Dynamic Routing & Auth (vite-plugin-pages + Cookies)
+                            │
+                            ▼
+           Central Fleet Store (Pinia State)
+            ▲                         ▲
+            │ (WebSocket updates)     │ (REST queries)
+            ▼                         ▼
+┌───────────────────────┐ ┌───────────────────────┐
+│   WebSocket Engine    │ │ fetchData / postData   │
+│  (Real-Time tracking) │ │  (Axios Controller)   │
+└───────────▲───────────┘ └───────────▲───────────┘
+            │                         │
+            └───────────┬─────────────┘
+                        ▼
+            Express.js / Node Backend`,
+
         stack: [
             { name: "Vue 3", role: "Core framework — Composition API with <script setup>" },
             { name: "Vuetify 3", role: "UI component library — responsive layouts, data tables, forms" },
@@ -132,6 +156,24 @@ Key architectural decisions:
             "Cut system-level fleet tracking disputes and support tickets by ~25% through offline buffer caching mechanisms.",
             "Eliminated layout and navigation formatting issues by ~95% by standardizing a zero-override RTL system."
         ],
+        keyDecisions: [
+            {
+                decision: "Why Vue 3 Setup Composition API?",
+                justification: "Maximized developer ergonomics, clean separation of concern patterns, zero-boilerplate code reuse across sub-apps, and robust typing support."
+            },
+            {
+                decision: "Why Pinia over Vuex?",
+                justification: "Type-safe state stores that support modular structural alignment, eliminating complex action dispatch configurations."
+            },
+            {
+                decision: "Why WebSocket batching & culling?",
+                justification: "Ignored off-screen vehicles and debounced update coordinates using a 5-meter Haversine distance limit, pruning map DOM nodes to reduce scripting overhead by ~70%."
+            },
+            {
+                decision: "Why dynamic subdomain layouts?",
+                justification: "Consolidated Admin, Customer, and Subdomain portals into 1 codebase, saving 40% maintenance overhead and ensuring standard layout wrappers."
+            }
+        ],
     },
 
     // ─────────────────────────────────────────────
@@ -180,6 +222,24 @@ Key architectural decisions:
 • GrapesJS visual page builder letting customers build landing pages via drag-and-drop
 • Dynamic SCSS theming per tenant with RTL/LTR layout switching
 • Google Analytics (gtag) integration with custom cookie-consent management`,
+
+        architectureDiagram: `┌────────────────────────────────────────────────────────┐
+│                   3-in-1 Vue 3 SPA                     │
+│  ┌────────────────┐ ┌───────────────┐ ┌─────────────┐  │
+│  │   Super Admin  │ │ Cust Dashboard│ │ B2C Portals │  │
+│  └────────────────┘ └───────────────┘ └─────────────┘  │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+             Subdomain Tenant Theme Dynamic Loader
+             (CSS Custom Properties Variable Injects)
+                            │
+                            ▼
+          CASL Authorization (Cookie Permissions Guard)
+          ┌─────────────────┼─────────────────┐
+          ▼                 ▼                 ▼
+    [SurveyJS Form]  [GrapesJS Studio]  [Payment Cart]
+     (Dynamic logic)  (DOM patches-upload) (O(N) Optim)`,
 
         stack: [
             { name: "Vue 3", role: "Core framework — Composition API for all feature modules" },
@@ -231,6 +291,24 @@ Key architectural decisions:
             "Decreased platform setup and customer support requests by ~60% through custom patched visual builder systems (GrapesJS).",
             "Boosted checkout payment transaction conversions by ~15% via O(N) optimized collective payment processing.",
             "Reduced development times for rolling out new features by ~45% through Pinia shared store structures and standardizations."
+        ],
+        keyDecisions: [
+            {
+                decision: "Why SurveyJS Deep Integration?",
+                justification: "Avoided re-inventing form designers by integrating SurveyJS for JSON-driven multi-step forms with dynamic branches, custom validators, and raw JSON storage."
+            },
+            {
+                decision: "Why GrapesJS with DOM Patches?",
+                justification: "Selected GrapesJS for direct HTML page output while applying custom MutationObserver patches to support complex video uploads and white-labeled scripts."
+            },
+            {
+                decision: "Why cookie-based permissions?",
+                justification: "Implemented HTTP-only cookie tokens alongside CASL client-side rules, keeping token storage secure against XSS while mapping roles dynamically."
+            },
+            {
+                decision: "Why O(N) payment reductions?",
+                justification: "Restructured nested loops on large cart arrays to use single-pass map indexing, keeping checkout workflows lag-free and boosting payment conversions."
+            }
         ],
     },
 
@@ -362,6 +440,24 @@ The architecture supports progressive migration — Vue/Nuxt → Next.js/React �
             "Expanded tutoring bookings and teacher monthly active listings by ~30% with multi-modal dynamic pricing matrix options.",
             "Eliminated SSR authorization failures and user redirect bugs by ~90% through cookie-persisted CASL integration.",
             "Cut new parent registration drop-offs by ~40% through localized Gov/City/Area nested database seeding."
+        ],
+        keyDecisions: [
+            {
+                decision: "Why Nuxt 3 SSR?",
+                justification: "Enabled fast initial paint and optimized SEO meta crawling for public educator profiles, ensuring search engine indexability."
+            },
+            {
+                decision: "Why Express & Prisma monorepo?",
+                justification: "Provided full type safety from DB mapping up to Express routing logic, making codebase changes predictable."
+            },
+            {
+                decision: "Why progressive React migration?",
+                justification: "Transformed frontend modules to React 19 + Zustand step-by-step to prevent platform downtime while backend REST services remained completely untouched."
+            },
+            {
+                decision: "Why 3-level area hierarchy?",
+                justification: "Organized Egypt locales under Governorate ➡️ City ➡️ Area, allowing high-precision nearby search algorithms."
+            }
         ],
         liveUrl: "https://zads.app",
     },
