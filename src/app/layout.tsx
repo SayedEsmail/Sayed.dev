@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Senior Frontend Engineer specializing in highly responsive, interactive Vue & React application architectures, multi-tenant B2B/B2C SaaS, and performance optimization.",
     keywords: ["Senior Frontend Engineer", "Vue 3 Developer", "Next.js Portfolio", "Vuetify 3", "React Developer", "Cairo", "Software Architecture"],
     authors: [{ name: "Sayed Esmail" }],
-    metadataBase: new URL("https://sayedesmail.dev"), // Fallback base URL for metadata
+    metadataBase: new URL("https://sayed5atab-gilt.vercel.app"),
     openGraph: {
         title: "Sayed Esmail | Senior Frontend Engineer",
         description: "Senior Frontend Engineer specializing in highly responsive, interactive Vue & React application architectures, multi-tenant B2B/B2C SaaS, and performance optimization.",
@@ -52,8 +52,9 @@ export default function RootLayout({
             className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
         >
             <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent/15 selection:text-accent font-sans">
+                <a className="skip-link" href="#main-content">Skip to content</a>
                 <Navbar />
-                <main className="flex-grow">
+                <main id="main-content" className="flex-grow">
                     {children}
                 </main>
                 <Footer />

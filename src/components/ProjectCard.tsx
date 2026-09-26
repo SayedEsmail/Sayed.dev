@@ -19,9 +19,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                     src={project.heroImage}
                     alt={`${project.title} Screenshot`}
                     fill
-                    sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                    priority={project.order === 1}
                 />
                 <div className="absolute inset-0 bg-neutral-950/20 group-hover:bg-neutral-950/0 transition-colors duration-500" />
             </div>
@@ -40,7 +39,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
                 {/* Title */}
                 <h3 className="text-xl font-bold tracking-tight text-white mb-2 group-hover:text-accent transition-colors duration-300">
-                    <Link href={`/projects/${project.slug}`} className="focus:outline-none">
+                    <Link href={`/projects/${project.slug}`} className="focus-visible:underline">
                         <span className="absolute inset-0" aria-hidden="true" />
                         {project.title}
                     </Link>

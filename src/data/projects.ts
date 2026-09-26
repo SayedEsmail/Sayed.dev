@@ -37,427 +37,284 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-    // ─────────────────────────────────────────────
-    // 1. Routz
-    // ─────────────────────────────────────────────
     {
         slug: "routz",
         title: "Routz",
-        subtitle: "Enterprise Fleet & Logistics Management System",
+        subtitle: "Fleet management for school transportation",
         description:
-            "A large-scale, enterprise-grade transportation, fleet, and logistics management system providing comprehensive tools for managing trips, live tracking, drivers, passengers, vehicles, and complex billing/subscription systems.",
-        tags: [
-            "Vue 3",
-            "Vuetify 3",
-            "Pinia",
-            "Leaflet",
-            "Google Maps",
-            "WebSockets",
-            "ApexCharts",
-            "i18n",
-        ],
+            "A fleet-management and school-transportation SaaS product with admin and client dashboards. I build workflows for drivers, trips, billing, subscriptions, and live GPS tracking.",
+        tags: ["Vue 3", "Node.js sockets", "GPS tracking", "Mapping", "Arabic/English"],
         heroImage: "/projects/routz/live-tracking.png",
         screenshots: [
             {
                 src: "/projects/routz/live-tracking.png",
-                alt: "Live Tracking Map — Real-time fleet tracking with WebSocket connection and Google Maps integration",
+                alt: "Routz live fleet tracking map",
             },
             {
                 src: "/projects/routz/trips-logs.png",
-                alt: "Trips Logs — Advanced trip management with multi-column filtering, status tracking, and passenger management",
+                alt: "Routz trip management interface",
             },
         ],
-        role: "Frontend Developer / Vue.js Engineer",
+        role: "Senior Frontend Engineer at Schoolz",
         featured: true,
         order: 1,
-
         problem:
-            "Transportation companies needed a unified platform to manage their entire fleet operations — from real-time vehicle tracking and trip scheduling to driver management, passenger handling, and complex billing with subscription packages. The existing solutions were fragmented, lacked real-time capabilities, and couldn't handle the multi-tenant requirements of serving different organizations (schools, enterprises) with distinct configurations.",
-
-        architecture: `3-App Architecture separating Super Admin controls, Customer Dashboards, and specific Subdomains — all within a single Vue 3 codebase. The app dynamically resolves the correct interface, routing, and authentication flow based on the active domain and user permissions.
-
-Key architectural decisions:
-• Dynamic routing with vite-plugin-pages and layout system for multi-tenant support
-• Centralized state management with Pinia stores for fleet data, trip management, and user sessions
-• RESTful API integration via custom fetchData/postData controllers with Axios
-• WebSocket integration for real-time vehicle tracking and trip status updates
-• Cookie-based authentication with role-based access control
-• Full internationalization (English/Arabic) with dynamic RTL/LTR switching`,
-
-        architectureDiagram: `┌────────────────────────────────────────────────────────┐
-│                   3-App Vue 3 Client                   │
-│   ┌───────────────┐ ┌───────────────┐ ┌────────────┐   │
-│   │  Super Admin  │ │ Cust Dashboard│ │ Subdomains │   │
-│   └───────┬───────┘ └───────┬───────┘ └──────┬─────┘   │
-└───────────┼─────────────────┼────────────────┼─────────┘
-            ▼                 ▼                ▼
-     Dynamic Routing & Auth (vite-plugin-pages + Cookies)
-                            │
-                            ▼
-           Central Fleet Store (Pinia State)
-            ▲                         ▲
-            │ (WebSocket updates)     │ (REST queries)
-            ▼                         ▼
-┌───────────────────────┐ ┌───────────────────────┐
-│   WebSocket Engine    │ │ fetchData / postData   │
-│  (Real-Time tracking) │ │  (Axios Controller)   │
-└───────────▲───────────┘ └───────────▲───────────┘
-            │                         │
-            └───────────┬─────────────┘
-                        ▼
-            Express.js / Node Backend`,
-
+            "School transportation teams need clear tools for coordinating drivers and trips, managing subscriptions and billing, and seeing active vehicles on a map.",
+        architecture:
+            "The product is built in Vue 3 with admin and client dashboards. Custom Node.js socket services provide live trip and driver-location updates, while mapping and geocoding APIs support route planning and location search. Shared components and composables support a bilingual Arabic and English interface.",
+        architectureDiagram: `Vue 3 dashboards
+        ├── Driver, trip, billing, and subscription workflows
+        ├── Mapping and geocoding APIs
+        └── Custom Node.js socket services for live tracking`,
         stack: [
-            { name: "Vue 3", role: "Core framework — Composition API with <script setup>" },
-            { name: "Vuetify 3", role: "UI component library — responsive layouts, data tables, forms" },
-            { name: "Pinia", role: "Centralized state management for fleet data and sessions" },
-            { name: "Vue Router", role: "Dynamic routing with vite-plugin-pages and layouts plugin" },
-            { name: "Leaflet / Google Maps", role: "Interactive maps for live tracking and route visualization" },
-            { name: "WebSockets", role: "Real-time vehicle tracking and trip status updates" },
-            { name: "ApexCharts", role: "Analytics dashboards and fleet performance metrics" },
-            { name: "Axios", role: "API integration with custom fetchData/postData controllers" },
-            { name: "Vue I18n", role: "Multi-language support (English/Arabic) with RTL" },
-            { name: "Vite", role: "Build tooling with hot module replacement" },
+            { name: "Vue 3", role: "Frontend for admin and client dashboards" },
+            { name: "Node.js socket services", role: "Live trip and driver-location updates" },
+            { name: "Mapping and geocoding APIs", role: "Route planning and location search" },
+            { name: "Arabic and English", role: "Bilingual interface" },
         ],
-
         challenges: [
             {
-                title: "Real-time Fleet Tracking at Scale",
+                title: "Live trip visibility",
                 solution:
-                    "Implemented WebSocket-based live tracking with efficient map marker updates. Used Google Maps clustering for large fleets and optimized re-renders by debouncing position updates and only updating visible markers within the viewport.",
+                    "Built a live GPS tracking interface connected to custom Node.js socket services so operators can follow active trips and driver locations.",
             },
             {
-                title: "Multi-tenant Dynamic Routing",
+                title: "Route and location workflows",
                 solution:
-                    "Built a routing system that dynamically resolves the correct app interface (Admin, Dashboard, Subdomain) based on the active domain. Used vite-plugin-pages with layout conventions and meta/layout/title patterns integrated with i18n keys.",
+                    "Integrated mapping and geocoding APIs for route planning, location search, and map interactions.",
             },
             {
-                title: "Complex Data Tables with Live Filters",
+                title: "Operational workflows",
                 solution:
-                    "Engineered trip logs and driver management tables with multi-column filtering (status, direction, date ranges), pagination with API parameter handling, and bulk management actions — all abstracted into reusable components like AppActionDialog.",
+                    "Delivered frontend workflows for driver management, trip scheduling, billing, and subscription management.",
             },
             {
-                title: "Interactive Mapping with Localization",
+                title: "Consistent bilingual UI",
                 solution:
-                    "Enhanced map centering, geocoding, and autocomplete by leveraging the user's localized country data from Pinia stores. Fixed critical bugs with location APIs and implemented precise coordinate management for pickup/dropoff points.",
+                    "Established shared Vue components and composables to support a consistent Arabic and English experience.",
             },
         ],
-
         impact: [
-            { metric: "Architecture", value: "3-App Architecture serving Admin, Dashboard, and Subdomain users" },
-            { metric: "Modules Built", value: "Driver management, Staff management, Trip logs, Live tracking, Subscriptions" },
-            { metric: "Reusable Components", value: "Abstracted UI patterns (AppActionDialog) reducing dev time for new features by ~40%" },
-            { metric: "i18n Coverage", value: "100% — zero hardcoded strings, full English/Arabic RTL support" },
-            { metric: "Real-time", value: "WebSocket-powered live tracking with sub-second updates" },
+            { metric: "Live operations", value: "GPS visibility into active trips and driver locations" },
+            { metric: "Core workflows", value: "Driver management, trip scheduling, billing, and subscriptions" },
+            { metric: "Shared frontend", value: "Reusable Vue components and composables for Arabic and English" },
         ],
         businessImpact: [
-            "Reduced dispatcher fleet coordination and route management workflows by ~35% via real-time WebSocket syncing.",
-            "Accelerated corporate customer onboarding times by ~50% using the dynamic, domain-driven subdomain layouts.",
-            "Cut system-level fleet tracking disputes and support tickets by ~25% through offline buffer caching mechanisms.",
-            "Eliminated layout and navigation formatting issues by ~95% by standardizing a zero-override RTL system."
+            "Gives operators a live view of active trips and driver locations.",
+            "Brings day-to-day driver, trip, billing, and subscription workflows into the product.",
+            "Supports customers using either Arabic or English.",
         ],
         keyDecisions: [
             {
-                decision: "Why Vue 3 Setup Composition API?",
-                justification: "Maximized developer ergonomics, clean separation of concern patterns, zero-boilerplate code reuse across sub-apps, and robust typing support."
+                decision: "Connect tracking to socket services",
+                justification:
+                    "Live trip and driver-location updates are central to the operator experience.",
             },
             {
-                decision: "Why Pinia over Vuex?",
-                justification: "Type-safe state stores that support modular structural alignment, eliminating complex action dispatch configurations."
+                decision: "Use mapping and geocoding APIs",
+                justification:
+                    "Route planning and location search depend on accurate map interactions.",
             },
             {
-                decision: "Why WebSocket batching & culling?",
-                justification: "Ignored off-screen vehicles and debounced update coordinates using a 5-meter Haversine distance limit, pruning map DOM nodes to reduce scripting overhead by ~70%."
+                decision: "Build shared Vue components and composables",
+                justification:
+                    "Shared frontend patterns keep the bilingual dashboards consistent.",
             },
-            {
-                decision: "Why dynamic subdomain layouts?",
-                justification: "Consolidated Admin, Customer, and Subdomain portals into 1 codebase, saving 40% maintenance overhead and ensuring standard layout wrappers."
-            }
         ],
+        liveUrl: "https://routz.me",
     },
-
-    // ─────────────────────────────────────────────
-    // 2. Untap
-    // ─────────────────────────────────────────────
     {
         slug: "untap",
         title: "Untap",
-        subtitle: "Multi-Tenant SaaS Innovation Platform",
+        subtitle: "Multi-tenant platform for innovation programs",
         description:
-            "An advanced, multi-tenant B2B/B2C SaaS platform for organizations to launch, manage, and scale innovation programs, competitions, grants, events, and mentorships. Serves multiple user personas — from system admins to corporate clients and public participants — through a single, highly scalable frontend architecture.",
-        tags: [
-            "Vue 3",
-            "Vuetify 3",
-            "SurveyJS",
-            "GrapesJS",
-            "Pinia",
-            "Multi-tenant",
-            "CASL",
-            "SCSS",
-        ],
+            "A multi-tenant SaaS platform for competitions, innovation programs, and grant management. Its Vue 3 codebase brings together admin, customer portal, and public-site experiences, with configurable forms and pages for client programs.",
+        tags: ["Vue 3", "Multi-tenant SaaS", "SurveyJS", "GrapesJS", "Vite", "Access control"],
         heroImage: "/projects/untap/dashboard-overview.png",
         screenshots: [
             {
                 src: "/projects/untap/dashboard-overview.png",
-                alt: "Dashboard Overview — KPI cards, activity logs, referral tracking, and visitor analytics",
+                alt: "Untap platform dashboard overview",
             },
             {
                 src: "/projects/untap/form-builder.png",
-                alt: "Form Builder — SurveyJS-powered drag-and-drop form designer with question types, logic builder, and evaluator settings",
+                alt: "Untap form builder interface",
             },
         ],
-        role: "Frontend Software Engineer (Vue.js)",
+        role: "Senior Frontend Engineer / Frontend Team Lead",
         featured: true,
         order: 2,
-
         problem:
-            "Organizations running innovation programs, hackathons, grants, and competitions needed a platform that could handle the full lifecycle — from creating multi-step application forms and managing submissions to coordinating judges, publishing results, and building custom landing pages. The challenge was building a single codebase that serves three completely different user experiences (admin, customer dashboard, public participant portal) while supporting multi-tenant customization per client.",
-
-        architecture: `3-in-1 Codebase Architecture — a single Vue 3 SPA that houses three distinct applications (Super Admin, Customer Dashboard, and Public Subdomain Portal) within one repository. The app dynamically resolves the correct interface, routing, and authentication flow based on the active domain/URL and user permissions.
-
-Key architectural decisions:
-• Multi-tenancy via subdomain routing — B2B clients configure their dashboards, which dynamically drive the UI, themes, and data on public-facing participant portals
-• HTTP-only cookie-based authentication with CASL permission/role management
-• SurveyJS deep integration for dynamic, multi-step application forms with file uploads and video recordings
-• GrapesJS visual page builder letting customers build landing pages via drag-and-drop
-• Dynamic SCSS theming per tenant with RTL/LTR layout switching
-• Google Analytics (gtag) integration with custom cookie-consent management`,
-
-        architectureDiagram: `┌────────────────────────────────────────────────────────┐
-│                   3-in-1 Vue 3 SPA                     │
-│  ┌────────────────┐ ┌───────────────┐ ┌─────────────┐  │
-│  │   Super Admin  │ │ Cust Dashboard│ │ B2C Portals │  │
-│  └────────────────┘ └───────────────┘ └─────────────┘  │
-└───────────────────────────┬────────────────────────────┘
-                            │
-                            ▼
-             Subdomain Tenant Theme Dynamic Loader
-             (CSS Custom Properties Variable Injects)
-                            │
-                            ▼
-          CASL Authorization (Cookie Permissions Guard)
-          ┌─────────────────┼─────────────────┐
-          ▼                 ▼                 ▼
-    [SurveyJS Form]  [GrapesJS Studio]  [Payment Cart]
-     (Dynamic logic)  (DOM patches-upload) (O(N) Optim)`,
-
+            "Organizations running competitions, innovation programs, and grants need tools to configure their programs and serve administrators, client teams, and public participants. Untap brings those experiences together while allowing client-specific themes, permissions, and runtime configuration.",
+        architecture:
+            "A Vue 3 codebase serves the admin, customer portal, and public-site experiences. The multi-tenant foundation supports per-client theming, permission roles, and runtime configuration. SurveyJS and GrapesJS provide customized form and page-building experiences; Vite build optimization, route-level code splitting, and state-management refactoring improved initial dashboard load time by 40%.",
+        architectureDiagram: `Vue 3 multi-tenant platform
+        ├── Admin, customer portal, and public-site experiences
+        ├── Client theming, permissions, and runtime configuration
+        ├── SurveyJS form builder and GrapesJS page builder
+        └── Vite build optimization and route-level code splitting`,
         stack: [
-            { name: "Vue 3", role: "Core framework — Composition API for all feature modules" },
-            { name: "Vuetify 3", role: "UI framework — responsive layouts, complex forms, data tables" },
-            { name: "Pinia", role: "State management across all three app contexts" },
-            { name: "SurveyJS", role: "Dynamic form builder — multi-step applications, evaluations, surveys" },
-            { name: "GrapesJS", role: "Visual drag-and-drop page builder for customer landing pages" },
-            { name: "CASL", role: "Permission-based access control with role management" },
-            { name: "SCSS", role: "Dynamic theming per tenant with RTL/LTR support" },
-            { name: "Axios", role: "API layer with custom fetchData/postData controllers" },
-            { name: "Vue I18n", role: "Bilingual platform (English/Arabic) with lazy-loaded locales" },
-            { name: "Google Analytics", role: "Tracking with custom cookie-consent integration" },
-            { name: "Vite", role: "Build system with dynamic favicon handling and icon generation" },
+            { name: "Vue 3", role: "Frontend platform across admin, customer, and public experiences" },
+            { name: "SurveyJS", role: "Customized schema-driven form builder" },
+            { name: "GrapesJS", role: "Customized drag-and-drop page builder" },
+            { name: "Vite", role: "Build optimization supporting faster dashboard loads" },
+            { name: "Access control", role: "Permission-based frontend access" },
         ],
-
         challenges: [
             {
-                title: "Performance: O(N×M) → O(N) Cart Calculations",
+                title: "Multi-tenant frontend foundation",
                 solution:
-                    "Refactored complex frontend data processing algorithms for collective payments in the subdomain cart feature. Reduced time complexity from O(N×M) to O(N), significantly improving UI responsiveness for large data sets with many participants and payment items.",
+                    "Designed the foundation for client-specific theming, permission roles, and runtime configuration across admin, customer portal, and public-site experiences.",
             },
             {
-                title: "Third-Party SDK Integration (GrapesJS)",
+                title: "Configurable program tools",
                 solution:
-                    "Solved complex integration bugs within GrapesJS by utilizing custom DOM injection and MutationObserver patterns to bypass library limitations — specifically fixing video upload capabilities within the studio builder that the SDK didn't natively support.",
+                    "Integrated and extensively customized SurveyJS and GrapesJS to deliver schema-driven forms and a drag-and-drop page builder.",
             },
             {
-                title: "Dynamic Hash Fragment Scrolling",
+                title: "Dashboard loading performance",
                 solution:
-                    "Implemented asynchronous smooth-scrolling for dynamic hash fragments in the subdomain portal. Had to handle the timing between Vue's rendering cycle and the browser's scroll behavior, especially with dynamically loaded content sections.",
+                    "Reduced initial dashboard load time by 40% through Vite build optimization, route-level code splitting, and state-management refactoring.",
             },
             {
-                title: "Multi-Tenant Theming & Routing",
+                title: "Frontend team leadership",
                 solution:
-                    "Built a routing system where each B2B client's subdomain dynamically loads their specific theme, branding, and content configuration. The same codebase renders completely different experiences based on the domain, with CSS custom properties for real-time theme switching.",
+                    "Owned frontend architecture decisions, code reviews, and engineer mentoring as Frontend Team Lead.",
             },
         ],
-
         impact: [
-            { metric: "Architecture", value: "3-in-1 codebase serving Admin, Dashboard, and Public Subdomain" },
-            { metric: "Performance", value: "O(N×M) → O(N) optimization on payment calculations" },
-            { metric: "Form Engine", value: "SurveyJS integration with file uploads, video recording, and dynamic validations" },
-            { metric: "Page Builder", value: "GrapesJS visual editor with custom DOM patches for full media support" },
-            { metric: "i18n", value: "Full bilingual (EN/AR) with dynamic RTL/LTR switching, zero hardcoded strings" },
-            { metric: "DX", value: "Authored architectural docs, established linting rules, standardized Composition API practices" },
+            { metric: "Initial dashboard load", value: "40% faster after build, routing, and state-management changes" },
+            { metric: "Client configuration", value: "Theming, permission roles, and runtime configuration" },
+            { metric: "Program authoring", value: "Customized form and page builders for client teams" },
         ],
         businessImpact: [
-            "Improved program managers' evaluation and review times by ~40% via SurveyJS automated multi-step form routers.",
-            "Decreased platform setup and customer support requests by ~60% through custom patched visual builder systems (GrapesJS).",
-            "Boosted checkout payment transaction conversions by ~15% via O(N) optimized collective payment processing.",
-            "Reduced development times for rolling out new features by ~45% through Pinia shared store structures and standardizations."
+            "Supports distinct client deployments from a shared frontend codebase.",
+            "Lets program teams configure forms and public pages through integrated builders.",
+            "Improved initial dashboard load time by 40% through frontend performance work.",
         ],
         keyDecisions: [
             {
-                decision: "Why SurveyJS Deep Integration?",
-                justification: "Avoided re-inventing form designers by integrating SurveyJS for JSON-driven multi-step forms with dynamic branches, custom validators, and raw JSON storage."
+                decision: "Build a shared multi-tenant frontend foundation",
+                justification:
+                    "Admin, customer, and public experiences need to support per-client configuration within one Vue codebase.",
             },
             {
-                decision: "Why GrapesJS with DOM Patches?",
-                justification: "Selected GrapesJS for direct HTML page output while applying custom MutationObserver patches to support complex video uploads and white-labeled scripts."
+                decision: "Customize established form and page builders",
+                justification:
+                    "SurveyJS and GrapesJS provide the basis for configurable program forms and pages.",
             },
             {
-                decision: "Why cookie-based permissions?",
-                justification: "Implemented HTTP-only cookie tokens alongside CASL client-side rules, keeping token storage secure against XSS while mapping roles dynamically."
+                decision: "Address dashboard load across build, routing, and state",
+                justification:
+                    "The reported 40% improvement came from combining Vite optimization, route-level code splitting, and state-management refactoring.",
             },
-            {
-                decision: "Why O(N) payment reductions?",
-                justification: "Restructured nested loops on large cart arrays to use single-pass map indexing, keeping checkout workflows lag-free and boosting payment conversions."
-            }
         ],
+        liveUrl: "https://untap.tech",
     },
-
-    // ─────────────────────────────────────────────
-    // 3. Zads (زاد)
-    // ─────────────────────────────────────────────
     {
         slug: "zads",
         title: "Zads",
-        subtitle: "Local Education Marketplace Platform",
+        subtitle: "Personal education platform",
         description:
-            "A full-stack education marketplace connecting learners with local teachers and trainers. Supports four flexible session modes — online, at the learner's home, at the teacher's home, or group sessions — with independent pricing per mode. Built as a multi-app monorepo spanning the entire stack.",
-        tags: [
-            "Nuxt 3",
-            "Next.js 16",
-            "Express.js",
-            "Prisma",
-            "PostgreSQL",
-            "Full-Stack",
-            "Vue 3",
-            "React 19",
-        ],
+            "A personal education project connecting families with teachers. The platform combines teacher discovery, location-aware search, flexible lesson pricing, and parent-to-tutor request workflows.",
+        tags: ["Nuxt 3", "Vue 3", "Node.js", "PostgreSQL", "Prisma", "Geolocation"],
         heroImage: "/projects/zads/landing-page.png",
         screenshots: [
             {
                 src: "/projects/zads/landing-page.png",
-                alt: "Zads Landing Page — Clean, conversion-focused design with feature highlights and how-it-works flow",
+                alt: "Zads education platform landing page",
             },
             {
                 src: "/projects/zads/teacher-dashboard.png",
-                alt: "Teacher Dashboard — Profile metrics (Views, Contact Requests, Ratings, Active Subjects) and incoming parent connection requests",
+                alt: "Zads teacher dashboard",
             },
             {
                 src: "/projects/zads/parent-dashboard.png",
-                alt: "Parent Dashboard — Overview showing followed teachers, requests count, search panel, and quick request recommendations in Arabic RTL",
+                alt: "Zads parent dashboard in Arabic",
             },
             {
                 src: "/projects/zads/parent-requests.png",
-                alt: "Parent Request Logs — Live tracking page showing active, closed, and deleted teacher tutoring requests across subjects",
+                alt: "Zads parent tutoring requests",
             },
             {
                 src: "/projects/zads/dependents-list.png",
-                alt: "Dependents (Children) Management — Area for parents to manage multiple student sub-profiles and associate distinct subjects/learning stages",
+                alt: "Zads parent student profiles",
             },
         ],
-        role: "Full-Stack Developer",
+        role: "Founder & Full-Stack Engineer (Personal project)",
         featured: true,
         order: 3,
-
         problem:
-            "There was no dedicated platform in the Egyptian market for connecting local learners with nearby teachers across multiple session formats. Parents needed a way to find verified tutors in their neighborhood, compare them, and book sessions — whether online, at home, or in groups. Teachers needed a platform to showcase their expertise with flexible per-subject, per-mode pricing. The solution required a full-stack platform with geo-proximity search, multi-modal pricing, and bilingual Arabic-first support.",
-
-        architecture: `Multi-App Monorepo with 4 distinct projects sharing a single REST API and PostgreSQL database:
-
-• zads_web (Nuxt 3 SSR) — Consumer-facing web app with geo-search, teacher profiles, and booking
-• zads-api (Express.js) — REST API backend with 13 endpoint groups, Prisma ORM, JWT auth
-• zads-dashboard (Vue 3 + Docker) — Admin panel with full CRUD and analytics
-• zads-app (Next.js 16 + React 19) — Migration target consolidating both frontends into one TypeScript app
-
-Database: 17 Prisma models, 8 enums, 3-level geographic hierarchy (Governorate → City → Area) seeded with real Egyptian location data.
-
-The architecture supports progressive migration — Vue/Nuxt → Next.js/React — consolidating 2 frontend apps into 1 unified TypeScript application while keeping the API stable.`,
-
-        architectureDiagram: `┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│  Web (Nuxt 3)   │     │ Dashboard (Vue 3) │     │ zads-app (Next) │
-│  ⭐ active       │     │  ⭐ active         │     │  🔄 migration    │
-└────────┬────────┘     └────────┬──────────┘     └────────┬────────┘
-         │                       │                          │
-         └───────────────────────┼──────────────────────────┘
-                                 ▼
-                        ┌───────────────┐
-                        │   REST API    │
-                        │  (Express)    │
-                        └───────┬───────┘
-                                ▼
-                        ┌───────────────┐
-                        │  PostgreSQL   │
-                        │  (Prisma)     │
-                        └───────────────┘`,
-
+            "Families need a way to find nearby teachers and request tutoring, while teachers need a place to present their subjects and pricing. Zads brings teacher discovery, location-aware search, lesson pricing, and parent requests into one product.",
+        architecture:
+            "Built the backend with Node.js, Express, Prisma ORM, and PostgreSQL. The customer web app and admin dashboards use Nuxt 3 and Vue 3, with CASL access control and Firebase push notifications. A migration toward a unified Next.js and React stack has begun.",
+        architectureDiagram: `Customer web app and admin dashboards
+        ├── Nuxt 3 and Vue 3
+        └── Migration toward Next.js and React
+                    │
+                    ▼
+        Node.js and Express backend
+                    │
+                    ▼
+        Prisma ORM and PostgreSQL`,
         stack: [
-            { name: "Nuxt 3", role: "Consumer web app — SSR, SEO, geo-proximity teacher search" },
-            { name: "Vue 3", role: "Admin dashboard — Composition API with Vuetify 3" },
-            { name: "Next.js 16", role: "Migration target — consolidating both frontends (React 19 + TypeScript)" },
-            { name: "Express.js", role: "REST API — 13 endpoint groups with JWT auth and role guards" },
-            { name: "Prisma 5", role: "ORM — 17 models, 8 enums, type-safe database access" },
-            { name: "PostgreSQL", role: "Primary database with 3-level geographic hierarchy" },
-            { name: "Zod", role: "Schema validation on all API endpoints" },
-            { name: "CASL", role: "RBAC with cookie-persisted ability rules across SSR" },
-            { name: "Firebase FCM", role: "Push notifications with per-user token management" },
-            { name: "Docker", role: "Containerized dashboard deployment with nginx" },
-            { name: "Zustand", role: "State management in Next.js migration (11 stores)" },
-            { name: "shadcn/ui", role: "Component library for Next.js migration" },
+            { name: "Node.js and Express", role: "Backend API" },
+            { name: "Prisma ORM", role: "Database access" },
+            { name: "PostgreSQL", role: "Application database" },
+            { name: "Nuxt 3 and Vue 3", role: "Customer web app and admin dashboards" },
+            { name: "CASL", role: "Access control" },
+            { name: "Firebase", role: "Push notifications" },
+            { name: "Next.js and React", role: "Target for the frontend migration in progress" },
         ],
-
         challenges: [
             {
-                title: "Geo-Proximity Search Algorithm",
+                title: "Finding nearby teachers",
                 solution:
-                    "Implemented a multi-level teacher ranking algorithm using Haversine distance calculations. Results are ranked by proximity (same area → same city → same governorate), then by verified status, rating, and view count. The 3-level geographic hierarchy (Governorate → City → Area) is seeded with real Egyptian location data for accurate results.",
+                    "Built geo-proximity search to match learners with nearby teachers using location mapping and distance routing.",
             },
             {
-                title: "Multi-Modal Pricing Matrix",
+                title: "Flexible lesson pricing",
                 solution:
-                    "Designed a pricing system with 5 independent price points per subject per teacher: at teacher's home, at student's home, group session, online, and offline — each with duration and negotiable flag. This required a complex TeacherSubject join model in Prisma with careful validation.",
+                    "Implemented dynamic pricing so teachers can offer different lesson arrangements.",
             },
             {
-                title: "Cross-Framework Migration (Vue → React)",
+                title: "Parent-to-tutor requests",
                 solution:
-                    "Leading a progressive migration from Vue/Nuxt to Next.js 16 + React 19 + TypeScript, consolidating 2 separate frontend apps into 1 unified app. Maintained feature parity while converting 9 Pinia stores to 11 Zustand stores, CASL Vue to CASL React, and @nuxtjs/i18n to next-intl.",
+                    "Automated tutor requests from parent sign-ups to connect registration with the tutoring workflow.",
             },
             {
-                title: "CASL RBAC Across SSR",
+                title: "Frontend migration",
                 solution:
-                    "Implemented cookie-persisted CASL ability rules that work seamlessly with Nuxt 3 server-side rendering. The authorization system handles 3 roles (parent, teacher, admin) with middleware guards and global ACL middleware for role-based redirects.",
+                    "Began moving the Nuxt 3 and Vue 3 frontend toward a unified Next.js and React stack.",
             },
         ],
-
         impact: [
-            { metric: "Full-Stack Scope", value: "4-app monorepo — API, SSR web, admin dashboard, and migration target" },
-            { metric: "Database Design", value: "17 Prisma models, 8 enums, 5 migrations with real geographic data" },
-            { metric: "API Coverage", value: "13 REST endpoint groups with Zod validation on all routes" },
-            { metric: "Search Algorithm", value: "Haversine-based geo-proximity with multi-level ranking" },
-            { metric: "Cross-Framework", value: "Active Vue/Nuxt → Next.js/React migration maintaining full feature parity" },
-            { metric: "i18n", value: "Arabic-first (RTL) with English (LTR), lazy-loaded locale files" },
+            { metric: "Teacher discovery", value: "Location-aware search for nearby teachers" },
+            { metric: "Lesson options", value: "Dynamic pricing and tutoring arrangements" },
+            { metric: "Parent workflow", value: "Tutor requests created from parent sign-ups" },
+            { metric: "Platform development", value: "Full-stack product with a frontend migration in progress" },
         ],
         businessImpact: [
-            "Reduced booking platform bounce rates by ~20% through Haversine geo-search localization.",
-            "Expanded tutoring bookings and teacher monthly active listings by ~30% with multi-modal dynamic pricing matrix options.",
-            "Eliminated SSR authorization failures and user redirect bugs by ~90% through cookie-persisted CASL integration.",
-            "Cut new parent registration drop-offs by ~40% through localized Gov/City/Area nested database seeding."
+            "Connects families with nearby teachers through location-aware discovery.",
+            "Gives teachers flexible pricing options for their lessons.",
+            "Links parent sign-ups to tutor request workflows.",
         ],
         keyDecisions: [
             {
-                decision: "Why Nuxt 3 SSR?",
-                justification: "Enabled fast initial paint and optimized SEO meta crawling for public educator profiles, ensuring search engine indexability."
+                decision: "Build the backend with Node.js, Express, Prisma, and PostgreSQL",
+                justification:
+                    "These technologies form the backend and data layer for the multi-app product.",
             },
             {
-                decision: "Why Express & Prisma monorepo?",
-                justification: "Provided full type safety from DB mapping up to Express routing logic, making codebase changes predictable."
+                decision: "Use location-aware teacher discovery",
+                justification:
+                    "Families need to find teachers near them, so search uses location mapping and distance routing.",
             },
             {
-                decision: "Why progressive React migration?",
-                justification: "Transformed frontend modules to React 19 + Zustand step-by-step to prevent platform downtime while backend REST services remained completely untouched."
+                decision: "Move toward a unified Next.js and React frontend",
+                justification:
+                    "The migration is intended to bring the customer app and admin dashboards toward one frontend stack.",
             },
-            {
-                decision: "Why 3-level area hierarchy?",
-                justification: "Organized Egypt locales under Governorate ➡️ City ➡️ Area, allowing high-precision nearby search algorithms."
-            }
         ],
         liveUrl: "https://zads.app",
     },

@@ -61,6 +61,7 @@ export default function Navbar() {
                         <Link
                             key={item.name}
                             href={item.path}
+                            aria-current={isPathActive(item.path) ? "page" : undefined}
                             className={`font-mono text-xs tracking-tight transition-colors duration-200 hover:text-accent relative py-1 ${
                                 isPathActive(item.path)
                                     ? "text-accent font-medium"
@@ -78,14 +79,14 @@ export default function Navbar() {
                 {/* Actions */}
                 <div className="hidden md:flex items-center gap-4">
                     <a
-                        href="/resume.pdf"
-                        download="Sayed_Esmail_CV.pdf"
+                        href="/Sayed_Esmail_Portfolio.pdf"
+                        download="Sayed_Esmail_Portfolio.pdf"
                         className="inline-flex items-center gap-2 font-mono text-[11px] tracking-tight font-medium text-[#0a0a0a] bg-accent hover:bg-accent-hover px-4 py-2 rounded-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 select-none shadow-[0_0_15px_rgba(0,212,170,0.15)] hover:shadow-[0_0_20px_rgba(0,212,170,0.3)]"
                     >
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
-                        Download CV
+                        Portfolio PDF
                     </a>
                 </div>
 
@@ -93,6 +94,8 @@ export default function Navbar() {
                 <button
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     aria-label="Toggle Menu"
+                    aria-expanded={mobileMenuOpen}
+                    aria-controls="mobile-navigation"
                     className="md:hidden flex items-center justify-center w-9 h-9 rounded-md border border-neutral-800 text-neutral-400 hover:text-white transition-colors"
                 >
                     {mobileMenuOpen ? (
@@ -109,7 +112,7 @@ export default function Navbar() {
 
             {/* Mobile Navigation Drawer */}
             {mobileMenuOpen && (
-                <div className="md:hidden absolute top-full left-0 right-0 border-b border-neutral-900 bg-[#0a0a0a]/95 backdrop-blur-lg animate-fade-in shadow-xl">
+                <div id="mobile-navigation" className="md:hidden absolute top-full left-0 right-0 border-b border-neutral-900 bg-[#0a0a0a]/95 backdrop-blur-lg animate-fade-in shadow-xl">
                     <div className="px-6 py-6 flex flex-col gap-5">
                         {navItems.map((item) => (
                             <Link
@@ -124,14 +127,14 @@ export default function Navbar() {
                             </Link>
                         ))}
                         <a
-                            href="/resume.pdf"
-                            download="Sayed_Esmail_CV.pdf"
+                            href="/Sayed_Esmail_Portfolio.pdf"
+                            download="Sayed_Esmail_Portfolio.pdf"
                             className="inline-flex items-center justify-center gap-2 font-mono text-xs tracking-tight font-medium text-[#0a0a0a] bg-accent hover:bg-accent-hover px-4 py-3 rounded-md transition-all duration-200 select-none w-full"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
-                            Download CV
+                            Portfolio PDF
                         </a>
                     </div>
                 </div>

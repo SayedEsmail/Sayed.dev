@@ -64,7 +64,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    Back to Case Studies
+                    Back to All Work
                 </Link>
             </FadeIn>
 
@@ -130,7 +130,7 @@ export default async function ProjectPage({ params }: PageProps) {
                         fill
                         sizes="100vw"
                         className="object-cover object-top"
-                        priority
+                        preload
                     />
                 </div>
             </FadeIn>
@@ -211,7 +211,7 @@ export default async function ProjectPage({ params }: PageProps) {
                             </h2>
                             <div className="p-6 rounded-xl border border-neutral-900 bg-accent/5 flex flex-col gap-4">
                                 <p className="text-[13px] sm:text-sm font-mono text-neutral-400">
-                                    Startups and corporate units hire engineers to drive business value. Here is the direct positive product impact achieved through these specific technical implementations:
+                                    The product capabilities and improvements delivered through this work:
                                 </p>
                                 <ul className="flex flex-col gap-3 list-disc marker:text-accent font-mono text-neutral-200 text-[15px] sm:text-base leading-relaxed pl-5">
                                     {project.businessImpact.map((item, i) => (
@@ -284,7 +284,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     <FadeIn>
                         <section aria-labelledby="impact-heading" className="p-6 rounded-xl border border-neutral-900 bg-neutral-950/20">
                             <h2 id="impact-heading" className="text-xs font-bold tracking-tight text-white uppercase mb-4 flex items-center gap-2 font-mono">
-                                Technical Benchmarks
+                                Delivery Highlights
                             </h2>
                             <div className="flex flex-col gap-4">
                                 {project.impact.map((metric, i) => (

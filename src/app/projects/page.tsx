@@ -1,43 +1,36 @@
 import type { Metadata } from "next";
-import { projects } from "@/data/projects";
-import ProjectCard from "@/components/ProjectCard";
-import SectionHeading from "@/components/SectionHeading";
-import FadeIn from "@/components/FadeIn";
+import { work } from "@/data/work";
+import WorkCard from "@/components/WorkCard";
+import DownloadLinks from "@/components/DownloadLinks";
 
 export const metadata: Metadata = {
-    title: "Engineering Case Studies",
-    description: "Deep dive case studies for enterprise fleet tracking (Routz), multi-tenant SaaS innovation portal (Untap), and education marketplace monorepo (Zads).",
+    title: "Company & Freelance Projects",
+    description: "Explore Sayed Esmail’s company and freelance work: Routz, Untap, AutoTager, Botme, Yanfaa, Wellpal, FundSeer, Kadouscope, Movex, and his own product Zads.",
 };
 
+const sections = [
+    { id: "company", label: "01 / Company work", title: "Products built with teams.", description: "Frontend engineering, product delivery, and technical leadership across SaaS, logistics, commerce, and automation." },
+    { id: "freelance", label: "02 / Freelance projects", title: "Focused work. Lasting improvements.", description: "UI redesigns, storefronts, dashboards, and API integrations delivered for independent clients." },
+    { id: "personal", label: "03 / Independent product", title: "From idea to working product.", description: "Zads is my own product, bringing together frontend engineering, backend development, and product decisions." },
+] as const;
+
 export default function ProjectsPage() {
-    // Sort projects by order
-    const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
-
     return (
-        <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
-            {/* Header */}
-            <div className="max-w-3xl mb-12">
-                <FadeIn delay={100}>
-                    <span className="font-mono text-xs text-accent tracking-widest uppercase font-semibold mb-3 block">
-                        Work Portfolio
-                    </span>
-                </FadeIn>
-                <FadeIn delay={200}>
-                    <SectionHeading
-                        title="Engineering Case Studies"
-                        subtitle="A curated selection of platforms I have built and scaled. These case studies focus on architectural decisions, performance benchmarks, and real-world system solutions."
-                    />
-                </FadeIn>
-            </div>
-
-            {/* Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-12">
-                {sortedProjects.map((project, index) => (
-                    <FadeIn key={project.slug} delay={100 * (index + 1)}>
-                        <ProjectCard project={project} />
-                    </FadeIn>
-                ))}
-            </div>
+        <div className="work-page max-w-6xl mx-auto px-6 py-12 md:py-20">
+            <header className="work-intro">
+                <p className="eyebrow">The work behind the experience</p>
+                <h1>Company teams.<br /><span>Independent projects.</span></h1>
+                <p>A selection of what I’ve built, the problems I worked on, and my contribution to each product.</p>
+                <DownloadLinks />
+            </header>
+            <nav className="work-index" aria-label="Project categories">
+                {sections.map(section => <a key={section.id} href={`#${section.id}`}><span>{section.id === "company" ? "Company work" : section.id === "freelance" ? "Freelance projects" : "My product"}</span><span className="work-count">{work.filter(item => item.category === section.id).length.toString().padStart(2, "0")}</span></a>)}
+            </nav>
+            {sections.map(section => <section key={section.id} id={section.id} className="work-section" aria-labelledby={`${section.id}-heading`}>
+                <div className="work-section-heading"><p className="eyebrow">{section.label}</p><h2 id={`${section.id}-heading`}>{section.title}</h2><p>{section.description}</p></div>
+                <div className="work-grid">{work.filter(item => item.category === section.id).map(item => <WorkCard key={item.slug} item={item} />)}</div>
+            </section>)}
+            <aside className="work-contact"><h2>Have a product in mind?</h2><p>Let’s talk about the interface, the users, and what needs to work better.</p><a href="mailto:sayed.5atab@gmail.com" className="text-link">sayed.5atab@gmail.com ↗</a></aside>
         </div>
     );
 }

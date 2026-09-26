@@ -11,7 +11,7 @@ export default function Footer() {
                         &copy; {currentYear} Sayed Esmail. All rights reserved.
                     </p>
                     <p className="text-xs text-neutral-600 font-mono tracking-tight mt-1">
-                        Built with Next.js & Tailwind CSS. Proof of architecture & engineering.
+                        Frontend engineering · Cairo, Egypt
                     </p>
                 </div>
                 <ContactLinks iconClassName="w-9 h-9" />
