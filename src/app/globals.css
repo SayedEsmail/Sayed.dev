@@ -105,7 +105,7 @@ body {
 .button-secondary:hover { background: #16211d; }
 .text-link { color: var(--accent); font-size: 12px; font-weight: 500; text-underline-offset: 5px; }
 .text-link:hover { text-decoration: underline; }
-.work-index { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #26332e; border-bottom: 1px solid #26332e; }
+.work-index { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid #26332e; border-bottom: 1px solid #26332e; }
 .work-index a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 24px 20px; font-size: 13px; border-right: 1px solid #26332e; transition: background .2s; }
 .work-index a:last-child { border: 0; }
 .work-index a:hover { background: #10231c; }

@@ -1,4 +1,4 @@
-export type WorkCategory = "company" | "freelance" | "personal";
+export type WorkCategory = "company" | "freelance";
 
 export interface WorkItem {
     slug: string;
@@ -114,7 +114,7 @@ export const work: WorkItem[] = [
     {
         slug: "zads",
         title: "Zads",
-        category: "personal",
+        category: "freelance",
         employer: "Personal project",
         period: "2024–Present",
         role: "Founder & Full-Stack Engineer",

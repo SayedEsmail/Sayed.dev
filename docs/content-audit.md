@@ -9,7 +9,7 @@ This audit records the source details and conflicts considered when creating `sr
 - **AutoTager:** The CV gives Jan 2022–Dec 2022. The request identifies the company as AutoTager 2022; the more precise CV range is used.
 - **Botme:** The CV gives Jan 2018–Jan 2022.
 - **MoreCreative, Enjaz, MTC, and Webdivs:** The CV groups all four under a combined 2014–2018 range and does not provide individual dates, titles, or project assignments. They are therefore represented as one grouped experience; the combined period is labeled as such.
-- **Zads:** The CV calls this a personal project and gives 2024–Present. It is categorized separately from company work.
+- **Zads:** The CV calls this a personal project and gives 2024–Present. At the user’s request, it appears first in the freelance section, retaining its founder role and personal-product attribution.
 - **Freelance entries:** The task brief supplies project descriptions. It does not provide dates for Yanfaa, Wellpal, FundSeer, or Kadouscope, so none are added. Movex is dated 2020 as specified in the brief. The brief does not identify specific client legal names, so entries use “Freelance client project.”
 
 ## Unsupported metrics in the existing project data

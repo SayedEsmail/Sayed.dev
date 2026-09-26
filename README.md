@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Portfolio content and PDF
 
-- `src/data/work.ts`: company, freelance, and personal work; source for project cards, experience, and the PDF preview.
+- `src/data/work.ts`: company and freelance work; source for project cards, experience, and the PDF preview.
 - `src/data/projects.ts`: the three featured technical case studies.
 - `docs/portfolio-plan.md`: implementation plan and content still needed.
 - `docs/content-audit.md`: resume reconciliation and screenshot provenance.

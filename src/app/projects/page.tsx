@@ -10,8 +10,7 @@ export const metadata: Metadata = {
 
 const sections = [
     { id: "company", label: "01 / Company work", title: "Products built with teams.", description: "Frontend engineering, product delivery, and technical leadership across SaaS, logistics, commerce, and automation." },
-    { id: "freelance", label: "02 / Freelance projects", title: "Focused work. Lasting improvements.", description: "UI redesigns, storefronts, dashboards, and API integrations delivered for independent clients." },
-    { id: "personal", label: "03 / Independent product", title: "From idea to working product.", description: "Zads is my own product, bringing together frontend engineering, backend development, and product decisions." },
+    { id: "freelance", label: "02 / Freelance projects", title: "Focused work. Lasting improvements.", description: "UI redesigns, storefronts, dashboards, and API integrations across independent products and client engagements." },
 ] as const;
 
 export default function ProjectsPage() {
@@ -24,7 +23,7 @@ export default function ProjectsPage() {
                 <DownloadLinks />
             </header>
             <nav className="work-index" aria-label="Project categories">
-                {sections.map(section => <a key={section.id} href={`#${section.id}`}><span>{section.id === "company" ? "Company work" : section.id === "freelance" ? "Freelance projects" : "My product"}</span><span className="work-count">{work.filter(item => item.category === section.id).length.toString().padStart(2, "0")}</span></a>)}
+                {sections.map(section => <a key={section.id} href={`#${section.id}`}><span>{section.id === "company" ? "Company work" : "Freelance projects"}</span><span className="work-count">{work.filter(item => item.category === section.id).length.toString().padStart(2, "0")}</span></a>)}
             </nav>
             {sections.map(section => <section key={section.id} id={section.id} className="work-section" aria-labelledby={`${section.id}-heading`}>
                 <div className="work-section-heading"><p className="eyebrow">{section.label}</p><h2 id={`${section.id}-heading`}>{section.title}</h2><p>{section.description}</p></div>

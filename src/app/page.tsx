@@ -141,7 +141,7 @@ export default function Home() {
 
             <section className="work-grid" aria-label="Explore the full portfolio">
                 <Link href="/projects#company" className="about-panel"><p className="eyebrow">01 / Company work</p><h2>Built as part of a team.</h2><p>Schoolz / Routz, Untap, AutoTager, Botme, and earlier agency experience.</p><span className="text-link">Explore company projects →</span></Link>
-                <Link href="/projects#freelance" className="about-panel"><p className="eyebrow">02 / Freelance projects</p><h2>Delivered for clients.</h2><p>Yanfaa, Wellpal, FundSeer, Kadouscope, and Movex. Redesigns, storefronts, dashboards, and more.</p><span className="text-link">Explore freelance projects →</span></Link>
+                <Link href="/projects#freelance" className="about-panel"><p className="eyebrow">02 / Freelance projects</p><h2>Delivered for clients.</h2><p>Zads, Yanfaa, Wellpal, FundSeer, Kadouscope, and Movex. Products, redesigns, storefronts, and dashboards.</p><span className="text-link">Explore freelance projects →</span></Link>
             </section>
 
             {/* Mini Technical Articles Section */}

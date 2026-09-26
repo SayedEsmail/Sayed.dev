@@ -14,7 +14,7 @@ export default function WorkCard({ item }: { item: WorkItem }) {
                 <div className="work-wordmark" aria-hidden="true"><span>{item.title}</span><span>{item.tags.slice(0, 2).join(" / ")}</span></div>
             )}
             <div className="work-card-body">
-                <div className="work-meta"><span>{item.category === "personal" ? "Independent product" : item.category === "company" ? "Company work" : "Freelance"}</span>{item.period && <span>{item.period}</span>}</div>
+                <div className="work-meta"><span>{item.category === "company" ? "Company work" : "Freelance"}</span>{item.period && <span>{item.period}</span>}</div>
                 <h3>{item.title}</h3>
                 <p className="work-role">{item.role}{item.category === "company" && item.employer !== item.title ? ` · ${item.employer}` : ""}</p>
                 <p className="work-description">{item.description}</p>

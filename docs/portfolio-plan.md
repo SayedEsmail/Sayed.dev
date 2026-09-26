@@ -3,7 +3,7 @@
 ## Scope and content
 - Preserve the existing dark/mint identity and the three featured home case studies.
 - Use the supplied resume as the source for employers, dates, roles, and supported outcomes.
-- Present company work and freelance work as two primary sections; label Zads as an independent product.
+- Present company work and freelance work as two primary sections; place Zads first in the freelance section while retaining its founder attribution.
 - Include Schoolz/Routz, Untap, AutoTager, Botme, and the grouped MoreCreative / Enjaz / MTC / Webdivs experience.
 - Include Yanfaa, Wellpal, FundSeer, Kadouscope, and Movex with explicit personal contributions.
 - Keep all work data in `src/data/work.ts`; case-study depth lives in `src/data/projects.ts`.
